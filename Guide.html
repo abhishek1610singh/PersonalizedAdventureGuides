@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Personalized Adventure Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Personalized Adventure Guide</h1>
+    <p><a href=https://www.vecteezy.com/free-photos/beautiful-mountain>Please Visit Mountain View</a></p>
+    <p><a href=https://unsplash.com/s/photos/sunset-beach>Plese Visit Beach View</a></p>
+    <form id="adventure-form">
+        <label for="name">Hello User! Please enter your name:</label><br>
+        <input type="text" id="name" required><br><br>
+        
+        <label for="destination">Where do you want to go?</label><br>
+        <select id="destination" required>
+            <option value="">Select Destination</option>
+            <option value="mountain">Mountain</option>
+            <option value="beach">Beach</option>
+        </select><br><br>
+        
+        <label for="budget">Enter your budget:</label><br>
+        <input type="number" id="budget" required><br><br>
+        
+        <label for="days">Please Enter The Days:</label><br>
+        <input type="number" id="days" required><br><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+    
+    <div id="result"></div>
+    
+    <script>
+        const form = document.getElementById('adventure-form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const destination = document.getElementById('destination').value;
+            const budget = parseInt(document.getElementById('budget').value);
+            const days = parseInt(document.getElementById('days').value);
+            const totalCost = budget * days;
+            
+            let budgetCategory;
+            if (budget >= 500) {
+                budgetCategory = 'Luxury';
+            } else if (budget >= 200) {
+                budgetCategory = 'Good';
+            } else if (budget > 0) {
+                budgetCategory = 'Budget Friendly';
+            } else {
+                budgetCategory = 'Not Valid';
+            }
+            
+            const result = `
+                <h2>Hello ${name}, Welcome to Personalized Adventure Guide</h2>
+                <p>You have elected ${destination}</p>
+                <p>Budget is ${budgetCategory}</p>
+                <p>Days: ${days}</p>
+                <p>Budget: ${budget}</p>
+                <p>Total Cost: ${totalCost}</p>
+                <p>Have a wonderful journey!</p>
+            `;
+            document.getElementById('result').innerHTML = result;
+        });
+    </script>
+</body>
+</html>
